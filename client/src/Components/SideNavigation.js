@@ -14,7 +14,7 @@ export const SideNavigation = () => {
         </Link>
         <Link to="/viewlist" className="nav-link navbar-link">
           <div className="flexA">
-            <h4>View/Edit SHG Details</h4>
+            <h4>Edit SHG Details</h4>
             <h5>{`>`}</h5>
           </div>
         </Link>
@@ -34,7 +34,7 @@ export const SideNavigation = () => {
         </Link>
         <Link to="/bankform" className="nav-link navbar-link">
           <div className="flexA">
-            <h4>Enter Loan Details</h4>
+            <h4>Enter Grade Details</h4>
             <h5>{`>`}</h5>
           </div>
         </Link>
