@@ -112,9 +112,11 @@ export const Filterslf = () => {
           <tr>
             <td>{index + 1}</td>
 
+              <td>
             <Link to={`/filter/${district}/${ulb}/${tlfname}/${row["SLF Name"]}/${year}`}>
-              <td>{row["SLF Name"]}</td>
+                {row["SLF Name"]}
             </Link>
+              </td>
             <td>{loanobj[row["SLF Name"]]}</td>
             <td>{obj[row["SLF Name"]]}</td>
             <td>{loanobj[row["SLF Name"]] - obj[row["SLF Name"]]}</td>
@@ -173,7 +175,7 @@ export const Filterslf = () => {
         ) : (
           <div className="AddFlex">
             <div style={{ width: "70%", marginLeft: "30%" }}>
-              <div style={{ width: "50%" }}>
+              <div style={{ width: "90%" }}>
                 <div className="breadcum">
                   <ol class="breadcrumb">
                     <Link to={`/filter`}>

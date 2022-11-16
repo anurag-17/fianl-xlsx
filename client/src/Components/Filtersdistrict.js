@@ -129,9 +129,11 @@ export const Filtersdistrict = () => {
           // {Object}.key(filterdata[0]),
           <tr>
             <td>{index + 1}</td>
+              <td>
             <Link to={`${row["District"]}/${year}`}>
-              <td>{row["District"]}</td>
+                {row["District"]}
             </Link>
+                </td>
             <td>{loanobj[row["District"]]}</td>
             <td>{obj[row["District"]]}</td>
             <td>{loanobj[row["District"]] - obj[row["District"]]}</td>
@@ -166,7 +168,7 @@ export const Filtersdistrict = () => {
 
         <div className="AddFlex">
           <div style={{ width: "70%", marginLeft: "30%" }}>
-            <div style={{ width: "50%" }}>
+            <div style={{ width: "90%" }}>
               <div className="breadcum">
                 <nav aria-label="breadcrumb">
                   <ol class="breadcrumb">

@@ -115,9 +115,11 @@ export const Filtertlf = () => {
           <tr>
             <td>{index + 1}</td>
 
+              <td>
             <Link to={`/filter/${district}/${ulb}/${row["TLF Name"]}/${year}`}>
-              <td>{row["TLF Name"]}</td>
+                {row["TLF Name"]}
             </Link>
+              </td>
             <td>{loanobj[row["TLF Name"]]}</td>
             <td>{obj[row["TLF Name"]]}</td>
             <td>{loanobj[row["TLF Name"]] - obj[row["TLF Name"]]}</td>
@@ -174,12 +176,14 @@ export const Filtertlf = () => {
         <Header />
         <div className="AddFlex">
           <div style={{ width: "70%", marginLeft: "30%" }}>
-            <div style={{ width: "50%" }}>
+            <div style={{ width: "90%" }}>
               <div className="breadcum">
                 <ol class="breadcrumb">
-                  <li class="breadcrumb-item active" aria-current="page">
-                    Home
-                  </li>
+                <Link to={`/filter`}>
+                      <li class="breadcrumb-item active" aria-current="page">
+                        Home
+                      </li>
+                    </Link>
 
                   <li class="breadcrumb-item active" aria-current="page">
                     {district}

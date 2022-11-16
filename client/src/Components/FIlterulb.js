@@ -97,9 +97,11 @@ export const FIlterulb = () => {
         return (
           <tr>
             <td>{index + 1}</td>
+              <td>
             <Link to={`/filter/${district}/${row["ULB Name"]}/${year}`}>
-              <td>{row["ULB Name"]}</td>
+                {row["ULB Name"]}
             </Link>
+              </td>
             <td>{loanobj[row["ULB Name"]]}</td>
             <td>{obj[row["ULB Name"]]}</td>
             <td>{loanobj[row["ULB Name"]] - obj[row["ULB Name"]]}</td>
@@ -172,7 +174,7 @@ export const FIlterulb = () => {
         <Header />
         <div className="AddFlex">
           <div style={{ width: "70%", marginLeft: "30%" }}>
-            <div style={{ width: "50%" }}>
+            <div style={{ width: "90%" }}>
               <div className="breadcum">
                 <nav aria-label="breadcrumb">
                   <ol class="breadcrumb">
