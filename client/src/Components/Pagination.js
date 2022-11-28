@@ -22,7 +22,7 @@ console.log(pagenum);
   return (
     <>
       <nav style={{ display: "flex", justifyContent: "center" }}>
-      {pagenum.length >1?(        
+      {nPages >1?(        
         <>
         {/* {currentPage === 1 ? (
           <ul className="pagination justify-content-center"></ul>
