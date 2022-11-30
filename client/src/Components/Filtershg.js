@@ -40,18 +40,19 @@ export const Filtershg = () => {
   const searchdistrict = async (event) => {
     setnewloading(true);
     setuploadblank(false);
-    setCurrentPage(1)
+    setCurrentPage(1);
     const res = await axios
       .post("/api/auth/searchall", {
         "SLF Name": slf,
         year: year,
       })
-      .then((res) =>
-        (setfilterdata(res.data),
-        setnewloading(false),
-        setnPages(Math.ceil(res.data.length / recordsPerPage)),
-        setNotuplod(false))
-
+      .then(
+        (res) => (
+          setfilterdata(res.data),
+          setnewloading(false),
+          setnPages(Math.ceil(res.data.length / recordsPerPage)),
+          setNotuplod(false)
+        )
       );
   };
   const searchdis = async (event) => {
@@ -94,14 +95,12 @@ export const Filtershg = () => {
   let datas;
   const fmap = () => {
     if (notuplod === true) {
-      datas = filterdata[0].slice(indexOfFirstRecord, indexOfLastRecord)
-      
+      datas = filterdata[0].slice(indexOfFirstRecord, indexOfLastRecord);
     } else if (notuplod === false) {
       datas = filterdata.slice(indexOfFirstRecord, indexOfLastRecord);
     } else if (uploadblank === true) {
       datas = filterdata.slice(indexOfFirstRecord, indexOfLastRecord);
     }
-
 
     try {
       const ffmap = datas.map((row, indexs) => {
@@ -132,7 +131,7 @@ export const Filtershg = () => {
       console.log(error);
     }
   };
-  
+
   const hmap = () => {
     let datas;
     if (notuplod === true) {
@@ -179,23 +178,22 @@ export const Filtershg = () => {
     const data = new Blob([excelBuffer], { type: fileType });
     FileSaver.saveAs(data, "excel" + fileExtension);
   };
+  let ids;
+  let cars1;
   const notuploadshgid = async () => {
     setnewloading(true);
     setuploadblank(true);
-  
+
     const res = await axios
       .post("/api/auth/getxlsxfile", {
         "SLF Name": slf,
       })
       .then((res) =>
         filterdata.length >= 1
-          ? (setfilterdata(
-              filterdata.map((items, index) => {
-                return res.data.filter((item, index) => {
-                  return item["SHG Id"] !== items["SHGID"];
-                });
-              })
-            ),
+          ? ((ids = filterdata.map((items) => items["SHGID"])),
+            (cars1 = res.data.filter((item) => !ids.includes(item["SHG Id"]))),
+            console.log(cars1),
+            setfilterdata([cars1]),
             setNotuplod(true),
             setnPages(Math.ceil(res.data.length / recordsPerPage)),
             setnewloading(false))
@@ -204,20 +202,18 @@ export const Filtershg = () => {
             setNotuplod(false),
             setnewloading(false),
             setuploadblank(true),
-            setnPages(Math.ceil(res.data.length / recordsPerPage))
-            )
+            setnPages(Math.ceil(res.data.length / recordsPerPage)))
       );
   };
   //pagination
   const [currentPage, setCurrentPage] = useState(1);
   const [recordsPerPage] = useState(10);
   const indexOfLastRecord = currentPage * recordsPerPage;
-const [nPages, setnPages ] = useState();
-// const [indexOfFirstRecord, setindexOfFirstRecord ] = useState(indexOfLastRecord - recordsPerPage);
+  const [nPages, setnPages] = useState();
+  // const [indexOfFirstRecord, setindexOfFirstRecord ] = useState(indexOfLastRecord - recordsPerPage);
 
   // const nPages = Math.ceil(filterdata.length / recordsPerPage);
   const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
-
 
   return (
     <>
@@ -316,14 +312,12 @@ const [nPages, setnPages ] = useState();
                         <tbody>{fmap()}</tbody>
                       </table>
                       <Pagination
-                    nPages={nPages}
-                    currentPage={currentPage}
-                    setCurrentPage={setCurrentPage}
-                    
-                  />
+                        nPages={nPages}
+                        currentPage={currentPage}
+                        setCurrentPage={setCurrentPage}
+                      />
                     </div>
                   )}
-             
                 </>
               ) : (
                 <>
@@ -336,7 +330,6 @@ const [nPages, setnPages ] = useState();
             </div>
           </div>
         </div>
-       
       </div>
     </>
   );
